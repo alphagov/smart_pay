@@ -2,8 +2,8 @@ require 'test_helper'
 
 describe SmartPay::Request do
   before do
-    SmartPay.psk = "Kah942*$7sdp0)"
     SmartPay.test_mode = true
+    @shared_key =  "Kah942*$7sdp0)"
     @parameters = {
       :merchant_reference => "Internet Order 12345",
       :payment_amount => 10000,
@@ -20,8 +20,14 @@ describe SmartPay::Request do
 
   # Based on example in http://www.barclaycard.com/smartpay/documentation/pdf/SmartPay_HPP_IntegrationGuide.pdf
   it "should calculate the correct hmac signature" do
-    request = SmartPay::Request.new(@parameters)
-
+    request = SmartPay::Request.new(@shared_key, @parameters)
     assert_equal "x58ZcRVL1H6y+XSeBGrySJ9ACVo=\n", request.hmac_signature
+  end
+
+  it "should use the appropriate request URL" do
+    SmartPay.test_mode = false
+    assert_equal SmartPay::Request::LIVE_URL, SmartPay::Request.new(nil).request_url
+    SmartPay.test_mode = true
+    assert_equal SmartPay::Request::TEST_URL, SmartPay::Request.new(nil).request_url
   end
 end

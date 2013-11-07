@@ -3,9 +3,9 @@ require 'openssl'
 
 module SmartPay
   class HmacCalculator
-    def initialize(parameters, psk)
-      @parameters = parameters
+    def initialize(psk, parameters)
       @psk = psk
+      @parameters = parameters
     end
 
     def signature
