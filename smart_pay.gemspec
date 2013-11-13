@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name    = "smart_pay"
-  s.version = "0.0.1"
+  s.version = "0.1"
   s.authors = ["Steve Laing"]
   s.email   = "steve.laing@digital.cabinet-office.gov.uk"
   s.summary = "Ruby library for handling Barclaycard Smartpay requests and responses"
