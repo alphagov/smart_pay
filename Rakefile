@@ -10,6 +10,7 @@ Bundler::GemHelper.install_tasks
 
 require 'rake/testtask'
 
+require 'gem_publisher'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
   t.libs << 'test'
