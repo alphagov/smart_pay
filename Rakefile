@@ -17,4 +17,9 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
+task :publish_gem do |t|
+  gem = GemPublisher.publish_if_updated("smart_pay.gemspec", :rubygems)
+  puts "Published #{gem}" if gem
+end
+
 task :default => :test
